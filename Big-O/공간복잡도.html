@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //문자의 길이에 비례해서 공간차지
+
+      //입력과 공간이 상관 없는 예시
+      function sum(arr) {
+        let t = 0; //공간할당 : 항상 같다
+        for (let i = 0; i < arr.length; i++) {
+          t += arr[i];
+        }
+        return t;
+      }
+      function sum(arr) {
+        let newarr = [];
+        for (let i = 0; i < arr.length; i++) {
+          newarr.push(2 * arr[i]);
+        }
+        return newarr; //입력에 비례해서 공간 크기가 달라진다.
+      }
+    </script>
+  </body>
+</html>
