@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       * 입력1 제곱이 입력2?
+       *
+       * */
+
+      function same(input1, input2) {
+        if (input1.length !== input2) {
+          return false;
+        }
+        for (let i = 0; i < input1.length; i++) {
+          //indexOf : 반복이기 때문에 o(n2)이 된다
+          let correctIndex = input2.indexOf(input1[i] ** 2);
+          if (correctIndex === -1) {
+            return false;
+          }
+          input2.splice(correctIndex, 1);
+        }
+        return true;
+      }
+      //refactor
+      function same2(input1, input2) {
+        if (input1.length !== input2.length) {
+          return false;
+        }
+
+        let fc1 = {};
+        let fc2 = {};
+        for (let val of input1) {
+          fc1[val] = (fc1[val] || 0) + 1;
+          fc2[val] = (fc2[val] || 0) + 1;
+        }
+        for (let key in fc1) {
+          if (!(key ** 2 in fc2)) {
+            return false;
+          }
+          //value check
+          if (fc2[key ** 2] !== fc1[key]) {
+            return false;
+          }
+        }
+      }
+      //[1,2,3,2] , [9,1,4,4]
+    </script>
+  </body>
+</html>
