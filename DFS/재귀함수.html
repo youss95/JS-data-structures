@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        function DFS(L) {
+          if (L === 0) return;
+          else {
+            DFS(L - 1); //result: 1 - 2 - 3
+            //1-2-3인 이유는 스택에 처음 D(3)이 저장되고 console에 도달하기 전에 재귀
+            // 스택에 D(2) 저장 -> D(1) 저장 -> return 하면 스택에 차례대로 실행
+            console.log(L);
+            //DFS(L-1) result: 3 - 2 - 1
+          }
+        }
+        DFS(n);
+      }
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
