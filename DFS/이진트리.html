@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //전위순회 부모 -> 왼 - 오른쪽
+      //후위순회 왼 오 부 4526731
+      function solution(v) {
+        let answer;
+        function DFS(v) {
+          if (v > 7) {
+            //종착지점
+            return;
+          } else {
+            //  console.log("전위순회: ", v);
+            DFS(v * 2);
+            DFS(v * 2 + 1);
+            console.log("후위순회: ", v);
+          }
+        }
+        DFS(v);
+        return answer;
+      }
+      //스택: [D(1),D(2),D(4),D(8)-21으로 return,D(9)-22 return,D(3),D(5),D(7)]
+      //1 2-save v=1 4-save v=2 (8) (9) console(4) 5-save v=2 (10) (11) console(5) console(2) 3-save v=1 6-save v=3 console(6) 7 console(7)
+
+      //부분집합 : 선택한다 vs 선택하지 않는다
+      function solution2(c, n, arr) {
+        let answer = 0;
+        let total = 0;
+        function DFS(L, sum) {
+          if (L === n) {
+            if (sum > c) return;
+            if (sum <= c) answer = Math.max(answer, sum);
+          } else {
+            //태우면
+            DFS(L + 1, sum + arr[L]);
+            //안태우면
+            DFS(L + 1, sum);
+          }
+        }
+        DFS(0, 0);
+        return answer;
+      }
+      let arr = [81, 58, 42, 33, 61];
+      let c = 259;
+      let n = 5;
+      console.log(solution2(c, n, arr));
+      // console.log(solution(1));
+    </script>
+  </body>
+</html>
