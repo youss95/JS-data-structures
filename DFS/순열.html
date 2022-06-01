@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //배열에서 2개씩 뽑아서 가능한 순열 만들기
+      function solution(m, arr) {
+        let answer = [];
+        let n = arr.length;
+        let ch = Array.from({ length: n }, () => 0); //체크됬으면 1 ex: [1,1,0];
+        let tmp = Array.from({ length: m }, () => 0); //[3,6] 처럼 임시 값 저장
+        function DFS(L) {
+          console.log("L", L);
+          if (L === m) {
+            console.log("push", L);
+            answer.push(tmp.slice());
+          } else {
+            for (let i = 0; i < n; i++) {
+              //L:0 일때 for문 3번 에서 L:1일때 for문 3번 ...
+              if (ch[i] === 0) {
+                ch[i] = 1;
+                console.log("tmp", L);
+                tmp[L] = arr[i];
+
+                DFS(L + 1); // L === m이면 return 되서 돌아옴
+                console.log("back", i);
+                //DFS 그래프에서 백하는 시점
+                ch[i] = 0;
+                console.log("end");
+              }
+            }
+          }
+        }
+        DFS(0);
+        return answer;
+      }
+      function solution2(m, arr) {
+        let answer = [];
+        let n = arr.length;
+        let ch = Array.from({ length: n }, () => 0);
+        let tmp = Array.from({ length: m }, () => 0);
+
+        function DFS(L) {
+          if (L === m) {
+            answer.push(tmp.slice());
+          } else {
+            for (let i = 0; i < n; i++) {
+              if (ch[i] === 0) {
+                ch[i] = 1;
+                tmp[L] = arr[i];
+                DFS(L + 1);
+
+                ch[i] = 0;
+              }
+            }
+          }
+        }
+        DFS(0);
+        return answer;
+      }
+      let arr = [3, 6, 9];
+      console.log(solution2(2, arr));
+    </script>
+  </body>
+</html>

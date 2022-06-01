@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //조합구하기 중복x
+      //m:뽑는 개수
+      function solution(n, m) {
+        let answer = [];
+        let tmp = Array.from({ length: m }, () => 0);
+        function DFS(L, s) {
+          if (L === m) {
+            //말단
+            answer.push(tmp.slice());
+          } else {
+            //노드가 뻗어나가는 지점
+            //L:1 -> 1,2,3,4 L:2 -> 각노드마다
+            for (let i = s; i <= n; i++) {
+              tmp[L] = i;
+              DFS(L + 1, i + 1);
+            }
+          }
+        }
+        DFS(0, 1);
+      }
+      console.log(solution(4, 2));
+    </script>
+  </body>
+</html>

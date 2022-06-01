@@ -15,7 +15,7 @@
         //DFS(L,sum)
         function DFS(L, sum) {
           if (sum > amount) return; //amount를 넘어가면 무한반복이 된다.
-          if (L > answer) return; //궅이 할 필요없다.
+          if (L > answer) return; //궅이 할 필요없다. L:탐색한 번수
           if (sum === amount) {
             //합이 같아질때 체크
             answer = Math.min(answer, L);

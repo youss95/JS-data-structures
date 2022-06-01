@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //자기 자신이 참여하는 경우 (n-1Cr-1), 하지 않는 경우 (n-1Cr)
+      function solution(n, r) {
+        let answer;
+        function DFS(n, r) {
+          if (n === r || r === 0) return 1;
+          else return DFS(n - 1, r - 1) + DFS(n - 1, r);
+        }
+        answer = DFS(n, r);
+        return answer;
+      }
+      //메모이제이션: 이미 구한값을 이찬원 배열에서 기록
+      function memoization(n, r) {
+        let answer;
+        let dy = Array(3).fill(Array(5).fill(0)); //3행 5열 2차원 배열
+        function DFS(n, r) {
+          if (dy[n][r] === 0) return dy[n][r];
+          if (n === r || r === 0) return 1;
+          else return (dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));
+        }
+        answer = DFS(n, r);
+      }
+      console.log(solution(5, 3)); //5C3
+    </script>
+  </body>
+</html>
